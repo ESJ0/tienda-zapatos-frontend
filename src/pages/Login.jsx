@@ -188,9 +188,6 @@ export default function Login() {
           </button>
         </form>
 
-        <p style={{ marginTop: 32, fontSize: 12, color: '#9ca3af', textAlign: 'center' }}>
-          Usuario por defecto: <strong>admin</strong> / <strong>admin123</strong>
-        </p>
       </div>
     </div>
   )
