@@ -1,16 +1,151 @@
-# React + Vite
+# 👟 ESJ0 Footwear — Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Interfaz de usuario para la tienda de zapatos ESJ0. Construida con **React + Vite**.
 
-Currently, two official plugins are available:
+## Stack
+- **React 18** + Vite
+- **React Router v6**
+- **Axios**
+- **Recharts**
+- **React Hook Form**
+- **Docker + Nginx**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## 🚀 Levantar con Docker
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+# 1. Clonar el repositorio
+git clone <url-del-repo>
+cd tienda-zapatos-frontend
 
-## Expanding the ESLint configuration
+# 2. Copiar variables de entorno
+cp .env.example .env
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+# 3. Construir y correr
+docker build -t zapatos-frontend .
+docker run -p 3000:80 zapatos-frontend
+```
+
+La aplicación estará en `http://localhost:3000`.
+
+> El backend debe estar corriendo en `http://localhost:8080` antes de levantar el frontend.
+
+---
+
+## 🛠️ Desarrollo local
+
+```bash
+# Requisitos: Node 20+
+
+# 1. Instalar dependencias
+npm install
+
+# 2. Copiar variables de entorno
+cp .env.example .env
+
+# 3. Correr en desarrollo
+npm run dev
+# → http://localhost:3000
+```
+
+---
+
+## 🔑 Credenciales de prueba
+
+| Campo    | Valor      |
+|----------|------------|
+| Usuario  | `admin`    |
+| Password | `admin123` |
+
+---
+
+## 🗺️ Rutas
+
+| Ruta | Descripción | Acceso |
+|------|-------------|--------|
+| `/` | Catálogo público de productos | Público |
+| `/login` | Inicio de sesión | Público |
+| `/dashboard` | Overview con gráficas y stats | Protegida |
+| `/dashboard/products` | CRUD de productos | Protegida |
+| `/dashboard/sales` | Ventas y crear venta | Protegida |
+| `/dashboard/customers` | CRUD de clientes | Protegida |
+| `/dashboard/employees` | CRUD de empleados (admin) | Protegida |
+| `/dashboard/reports` | Reportes + export CSV | Protegida |
+
+---
+
+## ✅ Criterios de rúbrica cubiertos
+
+| Criterio | Implementación |
+|----------|----------------|
+| React Router ≥4 rutas | 8 rutas distintas |
+| React Context | `AuthContext` + `CartContext` |
+| `useState` + `useEffect` + `useCallback`/`useMemo` | En hooks, contextos y páginas |
+| `useReducer` | Carrito de compras en `CartContext` |
+| Formularios controlados + validación | Login, Products, Customers, Employees, Sales |
+| Reporte con datos reales | Gráficas de barras, pie chart y tablas en `/dashboard/reports` |
+| Manejo visible de errores | Mensajes de validación y feedback en todos los formularios |
+| Solo admin gestiona empleados | `isAdmin` desde `AuthContext`, UI oculta acciones para no admins |
+| Export CSV | 3 exportaciones en `/dashboard/reports` |
+
+---
+
+## 🐳 Variables de entorno
+
+| Variable | Descripción | Valor por defecto |
+|----------|-------------|-------------------|
+| `VITE_API_URL` | URL base de la API | `http://localhost:8080/api` |
+
+---
+
+## 📁 Estructura del proyecto
+
+```
+tienda-zapatos-frontend/
+├── src/
+│   ├── api/axios.js
+│   ├── assets/
+│   │   └──shoes/
+│   ├── context/
+│   │   ├── AuthContext.jsx
+│   │   └── CartContext.jsx
+│   ├── hooks/useFetch.js
+│   ├── components/
+│   │   ├── layout/
+│   │   │   ├── Navbar.jsx
+│   │   │   ├── Sidebar.jsx
+│   │   │   └── Footer.jsx
+│   │   ├── ui/
+│   │   │   ├── Button.jsx
+│   │   │   ├── Input.jsx
+│   │   │   ├── Modal.jsx
+│   │   │   ├── Table.jsx
+│   │   │   ├── Badge.jsx
+│   │   │   └── StatCard.jsx
+│   │   └── catalog/
+│   │       ├── ProductCard.jsx
+│   │       └── ProductFilters.jsx
+│   ├── pages/
+│   │   ├── Login.jsx
+│   │   ├── Catalog.jsx
+│   │   └── dashboard/
+│   │       ├── Overview.jsx
+│   │       ├── Products.jsx
+│   │       ├── Sales.jsx
+│   │       ├── Customers.jsx
+│   │       ├── Employees.jsx
+│   │       └── Reports.jsx
+│   ├── routes/ProtectedRoute.jsx
+│   ├── utils/exportCsv.js
+│   ├── App.jsx
+│   ├── main.jsx
+│   └── index.css
+├── .env.example
+├── .dockerignore
+├── Dockerfile
+├── nginx.conf
+├── index.html
+├── vite.config.js
+└── package.json
+```
