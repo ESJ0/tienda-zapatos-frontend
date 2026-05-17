@@ -4,13 +4,24 @@
 <head>
     <meta charset="utf-8">
     <script>
-        var path = window.location.pathname;
-        var search = window.location.search;
-        var hash = window.location.hash;
-        var redirectUrl = window.location.origin +
-            '/tienda-zapatos-frontend/' +
-            '?redirect=' + encodeURIComponent(path + search + hash);
-        window.location.replace(redirectUrl);
+        (function() {
+            var base = '/tienda-zapatos-frontend/';
+            var path = window.location.pathname;
+            var route = path.indexOf(base) === 0 ? path.slice(base.length - 1) : '/';
+
+            if (route === '/' || route === '') {
+                route = '/login';
+            }
+
+            window.location.replace(
+                window.location.origin +
+                base +
+                '#' +
+                route +
+                window.location.search +
+                window.location.hash
+            );
+        })();
     </script>
 </head>
 
