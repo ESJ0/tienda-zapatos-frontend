@@ -36,7 +36,7 @@ function DashboardLayout({ children }) {
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <AuthProvider>
         <CartProvider>
           <Routes>
@@ -103,6 +103,6 @@ export default function App() {
           </Routes>
         </CartProvider>
       </AuthProvider>
-    </BrowserRouter>
+    </HashRouter>
   )
 }
