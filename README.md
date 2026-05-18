@@ -7,10 +7,21 @@ Interfaz de usuario para la tienda de zapatos ESJ0. Construida con **React + Vit
 - **React Router v6**
 - **Axios**
 - **Recharts**
-- **React Hook Form**
 - **Docker + Nginx**
+- **GitHub Actions** + **GitHub Pages**
 
 ---
+
+## Repositorios
+| backend  | https://github.com/ESJ0/tienda-zapatos-backend.git  |
+| frontend | https://github.com/ESJ0/tienda-zapatos-frontend.git |
+
+## Producción
+
+| Servicio | URL |
+|----------|-----|
+| Frontend | https://esj0.github.io/tienda-zapatos-frontend/health    |
+| API      | https://tienda-zapatos-backend-production.up.railway.app |
 
 ## 🚀 Levantar con Docker
 
@@ -103,10 +114,16 @@ npm run dev
 
 ```
 tienda-zapatos-frontend/
+├── .github/
+│   └── workflows/
+│       └── deploy.yml
+├── public/
+│   ├── shoes/
+│   │   ├── nike-air-force-1.png
+│   │   └── ...
+│   └── 404.html
 ├── src/
 │   ├── api/axios.js
-│   ├── assets/
-│   │   └──shoes/
 │   ├── context/
 │   │   ├── AuthContext.jsx
 │   │   └── CartContext.jsx
