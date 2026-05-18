@@ -1,11 +1,10 @@
 import { HashRouter, Routes, Route, Navigate } from 'react-router-dom'
-import { AuthProvider } from './context/AuthContext'
+import { AuthProvider, useAuth } from './context/AuthContext'
 import { CartProvider } from './context/CartContext'
 import ProtectedRoute from './routes/ProtectedRoute'
 
 // Pages
 import Login    from './pages/Login'
-import Catalog  from './pages/Catalog'
 
 // Dashboard pages
 import Overview   from './pages/dashboard/Overview'
@@ -34,6 +33,11 @@ function DashboardLayout({ children }) {
   )
 }
 
+function HomeRedirect() {
+  const { token } = useAuth()
+  return <Navigate to={token ? '/dashboard' : '/login'} replace />
+}
+
 export default function App() {
   return (
     <HashRouter>
@@ -43,7 +47,7 @@ export default function App() {
 
             {/* ── Públicas ────────────────────────────────────────────── */}
             <Route path="/login"   element={<Login />} />
-            <Route path="/"        element={<Catalog />} />
+            <Route path="/"        element={<HomeRedirect />} />
 
             {/* ── Protegidas ──────────────────────────────────────────── */}
             <Route element={<ProtectedRoute />}>
@@ -98,7 +102,7 @@ export default function App() {
             </Route>
 
             {/* ── Fallback ────────────────────────────────────────────── */}
-            <Route path="*" element={<Navigate to="/" replace />} />
+            <Route path="*" element={<HomeRedirect />} />
 
           </Routes>
         </CartProvider>
