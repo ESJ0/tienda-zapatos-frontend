@@ -20,8 +20,8 @@ Interfaz de usuario para la tienda de zapatos ESJ0. Construida con **React + Vit
 
 | Servicio | URL |
 |----------|-----|
-| Frontend | https://esj0.github.io/tienda-zapatos-frontend/health    |
-| API      | https://tienda-zapatos-backend-production.up.railway.app |
+| Frontend | https://esj0.github.io/tienda-zapatos-frontend                  |
+| API      | https://tienda-zapatos-backend-production.up.railway.app/health |
 
 ## 🚀 Levantar con Docker
 
